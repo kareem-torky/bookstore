@@ -63,7 +63,8 @@
 							<div class="row no-gutters">
 								<div class="col-md-7">
 									<div class="contact-wrap w-100 p-md-5 p-4">
-										<h3 class="mb-4">Contact Us</h3>
+                                        <h3 class="mb-4">Contact Us</h3>
+                                        <?php require VIEWS . "web/inc/errors.php"; ?>
 										<form method="POST" action="<?= url("contact-us/send"); ?>" id="contactForm" name="contactForm" class="contactForm">
 											<div class="row">
 												<div class="col-md-6">

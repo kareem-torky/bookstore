@@ -2,9 +2,11 @@
 
 namespace app\Controllers;
 
+use App\Models\Message;
 use Core\View;
 use App\Models\Setting;
 use Core\Request;
+use Core\Session;
 use Core\Validation\Validator;
 
 class ContactController 
@@ -22,10 +24,7 @@ class ContactController
     {
         // reading request data (Todo: refactor)
         $request = new Request;
-        $name = $request->post("name");
-        $email = $request->post("email");
-        $subject = $request->post("subject");
-        $message = $request->post("message");
+        extract($_POST);
 
         // validation 
         $request_prepared = [
@@ -53,8 +52,18 @@ class ContactController
 
         $errors = Validator::make($request_prepared);
 
-        echo '<pre>';
-        print_r($errors);
-        echo '</pre>';
+        if(! empty($errors)) {
+            $session = new Session;
+            $session->set("errors", $errors);
+        } else {
+            Message::connectTable()->insert([
+                'name' => $name,
+                'email' => $email,
+                'subject' => $subject,
+                'message' => $message,
+            ])->save();
+        }
+
+        $request->redirect("contact-us");
     }
 }

@@ -30,4 +30,9 @@ class Request
             echo "<strong>$key:</strong> $value <br>";
         }
     }
+
+    public function redirect($path)
+    {
+        header("location:" . URL . $path);
+    }
 }
