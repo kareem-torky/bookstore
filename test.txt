@@ -1,0 +1,23 @@
+SELECT books.id as book_id, books.name as book_name ... 
+FROM books JOIN authors join orders joi ... 
+ON books.author_id = authors.id AND ... 
+
+
+id 
+books.id AS book_id
+
+Db::getInstance()->joinTables(['books', 'authors' , ...])
+->selectMultiple([
+    'books' => ['id', 'name', 'img'],
+    'authors' => ['id', 'name', 'img'],
+    ... 
+])->on([
+    ['books.author_id', 'authors.id'],
+
+    ....
+])->get()
+
+Db::getInstance()->joinTables 
+->seelct 
+->get
+

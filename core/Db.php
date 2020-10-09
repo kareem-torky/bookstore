@@ -9,6 +9,8 @@ class Db
 
     private $conn;
     private $table;
+    private $tables;
+    private $join_fields = "";
     private $query;
 
     private function __construct()
@@ -143,5 +145,41 @@ class Db
     public function save()
     {
         return $this->conn->query($this->query);
+    }
+
+    public function joinTables(array $tables)
+    {
+        $this->tables = implode(" JOIN ", $tables);
+        $this->query = '';
+        return $this;
+    }
+
+    public function selectMultiple(array $tables_fields)
+    {
+        foreach ($tables_fields as $table => $fields) {
+            foreach ($fields as $field) {
+                $table_singular = trim($table, "s");
+                $this->join_fields .= " $table.$field AS $table_singular" . "_$field,";
+            }
+        }
+
+        $this->join_fields = substr($this->join_fields, 0, -1);
+
+        $this->query = "SELECT $this->join_fields FROM $this->tables";
+        // die($this->query);
+        return $this;
+    }
+
+    public function on(array $conds)
+    {
+        $keyword = "ON";
+
+        foreach ($conds as $cond) {
+            $this->query .= " $keyword {$cond[0]} = {$cond[1]} ";
+            $keyword = "AND";
+        }
+        // die($this->query);
+
+        return $this;
     }
 }

@@ -14,6 +14,11 @@ class Request
         return $_POST['key'] = ($value) ? $value : (isset($_POST[$key]) ? $_POST[$key] : $value);
     }
 
+    // public function extractPost()
+    // {
+    //     extract($_POST);
+    // }
+
     public function cookie(string $key, $value = null)
     {
         return $_COOKIE['key'] = ($value) ? $value : (isset($_COOKIE[$key]) ? $_COOKIE[$key] : $value);
