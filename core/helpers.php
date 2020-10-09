@@ -14,3 +14,10 @@ if(! function_exists("uploads")) {
     }
 }
 
+if(! function_exists("url")) {
+    function url($path)
+    {
+        echo URL . $path;
+    }
+}
+

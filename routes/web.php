@@ -10,3 +10,5 @@ $str = "([\w-]+)";
 
 // web routes
 $route->get('', "HomeController@index");
+$route->get('contact-us', "ContactController@index");
+$route->post('contact-us/send', "ContactController@send");
