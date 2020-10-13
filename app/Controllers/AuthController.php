@@ -55,9 +55,13 @@ class AuthController
         $errors = Validator::make($request_prepared);
 
         if(! empty($errors)) {
+
             $session = new Session;
             $session->set("errors", $errors);
+            $request->redirect("register");
+
         } else {
+
             $user_id = User::connectTable()->insert([
                 'username' => $username,
                 'email' => $email,
@@ -69,8 +73,71 @@ class AuthController
                 'phone' => $phone,
                 'address' => $address,
             ])->save();
-        }
 
-        $request->redirect("");
+            // store user data in session
+            $request->redirect("");
+
+        }
+    }
+
+    public function login()
+    {
+        View::load("web/auth/login");
+    }
+
+    public function doLogin()
+    {
+        $request = new Request;
+        $session = new Session;
+        extract($_POST);
+
+        // validation 
+        $request_prepared = [
+            
+            [
+                'name' => 'email',
+                'value' => $email,
+                'rules' => 'required|email'
+            ],
+            // todo: password validation
+            [
+                'name' => 'password',
+                'value' => $password,
+                'rules' => 'required|str'
+            ],
+        ];
+
+        $errors = Validator::make($request_prepared);
+
+        if(! empty($errors)) {
+
+            $session->set("errors", $errors);
+            $request->redirect("login");
+
+        } else {
+
+            $user = User::connectTable()->select()
+            ->where("email", "=", $email)
+            ->getOne();
+
+            if($user) {
+                $db_password = $user['password'];
+                $is_verified = password_verify($password, $db_password);
+                if($is_verified) {
+                    // store user data in session
+                    $session->set("logged_user", $user);
+                    
+                    $request->redirect("");
+                } else {
+                    $errors = ["password not correct"];
+                    $session->set("errors", $errors);  
+                    $request->redirect("login");      
+                }
+            } else {
+                $errors = ["there's no account for this email"];
+                $session->set("errors", $errors);   
+                $request->redirect("login"); 
+            }
+        }
     }
 }
