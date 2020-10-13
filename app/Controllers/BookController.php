@@ -9,11 +9,14 @@ use Core\Request;
 use Core\Session;
 use Core\Validation\Validator;
 use Core\Db;
+use App\Middlewares\UserAuth;
 
 class BookController 
 {
     public function index()
     {
+        UserAuth::handle(new Request);
+
         $data['books'] = Db::getInstance()->joinTables(['books', 'authors'])
         ->selectMultiple([
             'books' => ['id', 'name', 'img', 'price'],
@@ -25,50 +28,4 @@ class BookController
         View::load("web/books/index", $data);
     }
 
-    // public function send()
-    // {
-    //     // reading request data (Todo: refactor)
-    //     $request = new Request;
-    //     extract($_POST);
-
-    //     // validation 
-    //     $request_prepared = [
-    //         [
-    //             'name' => 'name',
-    //             'value' => $name,
-    //             'rules' => 'required|str'
-    //         ],
-    //         [
-    //             'name' => 'email',
-    //             'value' => $email,
-    //             'rules' => 'required|email'
-    //         ],
-    //         [
-    //             'name' => 'subject',
-    //             'value' => $subject,
-    //             'rules' => 'required|str'
-    //         ],
-    //         [
-    //             'name' => 'message',
-    //             'value' => $message,
-    //             'rules' => 'required|str'
-    //         ],
-    //     ];
-
-    //     $errors = Validator::make($request_prepared);
-
-    //     if(! empty($errors)) {
-    //         $session = new Session;
-    //         $session->set("errors", $errors);
-    //     } else {
-    //         Message::connectTable()->insert([
-    //             'name' => $name,
-    //             'email' => $email,
-    //             'subject' => $subject,
-    //             'message' => $message,
-    //         ])->save();
-    //     }
-
-    //     $request->redirect("contact-us");
-    // }
 }

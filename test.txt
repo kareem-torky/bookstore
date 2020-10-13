@@ -10,3 +10,16 @@ adminlte
 
 رفع الصور
 File 
+
+1- login/register/logout (Auth) --> done
+2- routes (middlewares) --> done
+3- show/hide 
+
+
+middleware 
+AuthMiddleWare 
+
+routing table 
+
+middleware controllers 
+logout --> AuthController@logout

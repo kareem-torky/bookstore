@@ -21,3 +21,10 @@ if(! function_exists("url")) {
     }
 }
 
+if(! function_exists("authCheck")) {
+    function authCheck()
+    {
+        return Core\Auth::check();
+    }
+}
+
