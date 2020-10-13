@@ -15,8 +15,6 @@ class BookController
 {
     public function index()
     {
-        UserAuth::handle(new Request);
-
         $data['books'] = Db::getInstance()->joinTables(['books', 'authors'])
         ->selectMultiple([
             'books' => ['id', 'name', 'img', 'price'],
@@ -27,5 +25,4 @@ class BookController
 
         View::load("web/books/index", $data);
     }
-
 }

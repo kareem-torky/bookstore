@@ -16,6 +16,6 @@ require_once ROUTES . "web.php";
 // ])->get();
 
 // echo '<pre>';
-// print_r($books);
+// print_r($route->getRoutingTable());
 // echo '</pre>';
 $app = new App;

@@ -110,7 +110,6 @@ class AuthController
 
     public function logout()
     {
-        UserAuth::handle(new Request);
         Auth::logout();
     }
 }
