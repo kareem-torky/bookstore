@@ -147,6 +147,15 @@ class Db
         return $this->conn->query($this->query);
     }
 
+    public function saveAndGetId()
+    {
+        if ($this->conn->query($this->query)) {
+            return $this->conn->insert_id;
+        }
+
+        return null;
+    }
+
     public function joinTables(array $tables)
     {
         $this->tables = implode(" JOIN ", $tables);

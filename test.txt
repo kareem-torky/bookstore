@@ -1,23 +1,12 @@
-SELECT books.id as book_id, books.name as book_name ... 
-FROM books JOIN authors join orders joi ... 
-ON books.author_id = authors.id AND ... 
+التلات
+الجمعة
 
+1- auth
+2- pagination
+3- cart 
 
-id 
-books.id AS book_id
+dashboard 
+adminlte
 
-Db::getInstance()->joinTables(['books', 'authors' , ...])
-->selectMultiple([
-    'books' => ['id', 'name', 'img'],
-    'authors' => ['id', 'name', 'img'],
-    ... 
-])->on([
-    ['books.author_id', 'authors.id'],
-
-    ....
-])->get()
-
-Db::getInstance()->joinTables 
-->seelct 
-->get
-
+رفع الصور
+File 
