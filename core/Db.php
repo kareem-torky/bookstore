@@ -88,6 +88,12 @@ class Db
         }
     }
 
+    public function paginate(int $limit,int $offset)
+    {
+        $this->query .= " LIMIT $limit OFFSET $offset";
+        return $this->get();
+    }
+
     public function getOne()
     {
         $this->query .= " LIMIT 1";

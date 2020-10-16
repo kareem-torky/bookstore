@@ -12,7 +12,7 @@ $str = "([\w-]+)";
 $route->get('', "HomeController@index");
 $route->get('contact-us', "ContactController@index");
 $route->post('contact-us/send', "ContactController@send");
-$route->get('books', "BookController@index", "UserAuth");
+$route->get("books/page/$num", "BookController@index");
 
 // auth routes
 $route->get("register", "AuthController@register");

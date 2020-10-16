@@ -49,13 +49,9 @@
 		          <div class="col">
 		            <div class="block-27">
 		              <ul>
-		                <li><a href="#">&lt;</a></li>
-		                <li class="active"><span>1</span></li>
-		                <li><a href="#">2</a></li>
-		                <li><a href="#">3</a></li>
-		                <li><a href="#">4</a></li>
-		                <li><a href="#">5</a></li>
-		                <li><a href="#">&gt;</a></li>
+		                <li><a href="<?php url("books/page/". ($page-1)); ?>" <?php if($page == 1) echo 'class="link-disabled"'; ?> >&lt;</a></li>
+                            page <?= $page ?> of <?= $pages_total_num; ?>
+		                <li><a href="<?php url("books/page/". ($page+1)); ?>" <?php if($page == $pages_total_num) echo 'class="link-disabled"'; ?>>&gt;</a></li>
 		              </ul>
 		            </div>
 		          </div>

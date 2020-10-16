@@ -1,25 +1,30 @@
 التلات
 الجمعة
 
-1- auth
+1- auth (done)
 2- pagination
 3- cart 
 
 dashboard 
 adminlte
 
-رفع الصور
-File 
+page-length = 6
+2 
 
-1- login/register/logout (Auth) --> done
-2- routes (middlewares) --> done
-3- show/hide 
+1- query 
+2- paginator
+
+SELECT * FROM books LIMIT 6 OFFSET 0 
+
+$page_length = 6; 
+$page_num;
+1 --> 0 
+2 --> 6
+3 --> 12 
+
+$offset = ($page_num - 1) * $page_length;
+
+1 2 3 4 
 
 
-middleware 
-AuthMiddleWare 
-
-routing table 
-
-middleware controllers 
-logout --> AuthController@logout
+1 2 3 4 5 6 7 8 9 10
