@@ -61,6 +61,7 @@
 	        	<li class="nav-item"><a href="<?php url("books/page/1"); ?>" class="nav-link">Books</a></li>
 	        	<li class="nav-item"><a href="authors.html" class="nav-link">Author</a></li>
 	            <li class="nav-item"><a href="<?php url("contact-us"); ?>" class="nav-link">Contact</a></li>
+	            <li class="nav-item"><a href="<?php url("cart"); ?>" class="nav-link">Cart</a></li>
                 <?php if(authCheck()): ?>
                     <li class="nav-item"><a href="<?php url("logout"); ?>" class="nav-link">Logout</a></li>
                 <?php else: ?>

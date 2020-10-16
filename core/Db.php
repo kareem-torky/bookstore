@@ -52,6 +52,13 @@ class Db
         return $this;
     }
 
+    public function whereIn(string $field, array $values)
+    {
+        $values = "(" . implode(",", $values) . ")";
+        $this->query .= " WHERE $field IN $values";
+        return $this;
+    }
+
     public function andWhere(string $field, string $op, $value)
     {
         $this->query .= " AND $field $op '$value'";

@@ -2,29 +2,33 @@
 الجمعة
 
 1- auth (done)
-2- pagination
+2- pagination (done)
 3- cart 
 
 dashboard 
 adminlte
 
-page-length = 6
-2 
+1- add to cart
+cart/add/$num 
+_SESSION = [
 
-1- query 
-2- paginator
+    'cart' => [
+        '12' => 1,
+        '1' => 1,
+        '3' => 1,
+    ]
+]
 
-SELECT * FROM books LIMIT 6 OFFSET 0 
-
-$page_length = 6; 
-$page_num;
-1 --> 0 
-2 --> 6
-3 --> 12 
-
-$offset = ($page_num - 1) * $page_length;
-
-1 2 3 4 
+2- cart 
+cart 
 
 
-1 2 3 4 5 6 7 8 9 10
+3- order submit
+orders
+order_items
+cart/store
+
+
+name="ids[]"
+
+// cart/remove/$num

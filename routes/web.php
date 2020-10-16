@@ -22,3 +22,13 @@ $route->get("login", "AuthController@login");
 $route->post("do-login", "AuthController@doLogin");
 
 $route->get("logout", "AuthController@logout", "UserAuth");
+
+// cart and order routes
+$route->get("cart/add/$num", "CartController@add");
+$route->get("cart", "CartController@index", "UserAuth");
+$route->post("cart/store", "CartController@store", "UserAuth");
+$route->get("cart/empty", "CartController@empty", "UserAuth");
+
+
+$route->get("dashboard", "AdminHomeController@index");
+

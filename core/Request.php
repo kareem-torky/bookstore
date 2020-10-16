@@ -40,4 +40,9 @@ class Request
     {
         header("location:" . URL . $path);
     }
+
+    public function back()
+    {
+        header("location:" . $_SERVER['HTTP_REFERER']);
+    }
 }

@@ -16,7 +16,7 @@ class BookController
 {
     public function index($page)
     {
-        $page_length = 3;
+        $page_length = 6;
         $offset = ($page - 1) * $page_length;
 
         $data['page'] = $page;
@@ -38,7 +38,8 @@ class BookController
             'authors' => ['id', 'name'],
         ])->on([
             ['books.author_id', 'authors.id'],
-        ])->paginate($page_length, $offset);
+        ])->orderBy("book_id", "ASC")
+        ->paginate($page_length, $offset);
 
         
         View::load("web/books/index", $data);
